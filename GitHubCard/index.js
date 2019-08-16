@@ -25,7 +25,17 @@ axios.get("https://api.github.com/users/NickGallucci")
 .catch(err => {
   console.log(err);
 })
-
+// const followersArray = ['cladams0203', 'zrsmith75', 'LoralieFlint', 'NickGallucci']
+// followersArray.forEach((name) => {
+//   axios.get(`https://api.github.com/users/${name}`)
+//       .then(response => {
+//           const cCards = document.querySelector('.cards')
+//           cCards.appendChild(
+//               followerCards(response.data.avatar_url, response.data.name, response.data.login, response.data.location, response.data.html_url, response.data.followers, response.data.following, response.data.bio)
+//           )
+//       })
+//       .catch(err => console.log(err))
+// })
 const followersArray = [];
 axios.get('https://api.github.com/users/NickGallucci/followers')
 .then(response =>{
