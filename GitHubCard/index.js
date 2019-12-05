@@ -90,7 +90,7 @@ function superComp(obj){
   userP = document.createElement("p");
   userLoc = document.createElement("p");
   profile = document.createElement("p");
-  profileURL = document.createElement("href");
+  profileURL = document.createElement("p");
   followers = document.createElement("p");
   following = document.createElement("p");
   bio = document.createElement("p");
