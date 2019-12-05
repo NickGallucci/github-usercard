@@ -2,21 +2,6 @@
            (replacing the palceholder with your Github name):
            https://api.github.com/users/<your name>
 */
-
-// axios.get(url[https://api.github.com/users/NickGallucci, config])
-// axios.get('https://api.github.com/users/NickGallucci', {
-// })
-// .then(function (response) {
-//   console.log(response);
-//   cCard.appendChild(superComp(response.data));
-// })
-// .catch(function (error) {
-//   console.log(error);
-// })
-// .then(function () {
-//   // always executed
-// });
-
 axios.get("https://api.github.com/users/NickGallucci")
 .then(response => {
   console.log(response);
@@ -25,33 +10,28 @@ axios.get("https://api.github.com/users/NickGallucci")
 .catch(err => {
   console.log(err);
 })
-// const followersArray = ['cladams0203', 'zrsmith75', 'LoralieFlint', 'NickGallucci']
-// followersArray.forEach((name) => {
-//   axios.get(`https://api.github.com/users/${name}`)
-//       .then(response => {
-//           const cCards = document.querySelector('.cards')
-//           cCards.appendChild(
-//               followerCards(response.data.avatar_url, response.data.name, response.data.login, response.data.location, response.data.html_url, response.data.followers, response.data.following, response.data.bio)
-//           )
-//       })
-//       .catch(err => console.log(err))
-// })
+
+
 const followersArray = [];
 axios.get('https://api.github.com/users/NickGallucci/followers')
-.then(response =>{
-  console.log(response);
-  response.data.forEach( element =>{
-    console.log(element);
-    followersArray.push(element);
+.then(function(card) {
+  const followers = card.data;
+  followers.forEach(details => {
+    followersArray.push(details);
   })
-  followersArray.forEach(element =>{
-    cCard.appendChild(superComp(element));
+
+})
+.then(function() {
+  followersArray.forEach(details => {
+    axios.get(`https://api.github.com/users/${details.login}`)
+    .then(function(card) {
+      const userGitHub = superComp(card.data);
+      document.querySelector('.cards').append(userGitHub);
+    })
   })
 })
-.catch(err => {
-  console.log(err);
-})
-console.log(followersArray);
+
+// console.log(followersArray);
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
    data in order to use it to build your component function 
@@ -77,6 +57,7 @@ followersArray.forEach(item =>{
   let followerCards = superComp(item);
   cCard.appendChild(followerCards);
 })
+
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
