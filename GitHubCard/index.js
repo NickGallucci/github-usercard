@@ -11,8 +11,8 @@ axios.get("https://api.github.com/users/NickGallucci")
   console.log(err);
 })
 
-
 const followersArray = [];
+
 axios.get('https://api.github.com/users/NickGallucci/followers')
 .then(function(card) {
   const followers = card.data;
@@ -21,6 +21,7 @@ axios.get('https://api.github.com/users/NickGallucci/followers')
   })
 
 })
+
 .then(function() {
   followersArray.forEach(details => {
     axios.get(`https://api.github.com/users/${details.login}`)
