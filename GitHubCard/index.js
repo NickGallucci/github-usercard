@@ -90,7 +90,7 @@ function superComp(obj){
   userP = document.createElement("p");
   userLoc = document.createElement("p");
   profile = document.createElement("p");
-  profileURL = document.createElement("a");
+  profileURL = document.createElement("href");
   followers = document.createElement("p");
   following = document.createElement("p");
   bio = document.createElement("p");
@@ -103,11 +103,13 @@ function superComp(obj){
   cCard.appendChild(cCardInfo);
   cCardInfo.appendChild(nameH3);
   cCardInfo.appendChild(userP);
+  cCardInfo.appendChild(profileURL);
   cCardInfo.appendChild(userLoc);
   cCardInfo.appendChild(profile);
   cCardInfo.appendChild(followers);
   cCardInfo.appendChild(following);
   cCardInfo.appendChild(bio);
+  
 
   img.src = `${obj.avatar_url}`;
   nameH3.textContent = `${obj.login}`;
